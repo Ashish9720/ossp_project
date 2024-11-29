@@ -70,10 +70,6 @@ void executeBasic(char** argv) {
     if (strcmp(argv[0], "sa") == 0) {
         argv[0] = "ls";
     }
-    // Replace "noise" command with "echo"
-    if (strcmp(argv[0], "noise") == 0) {
-        argv[0] = "echo";
-    }
 
     if (fork() > 0) {
         // Parent
@@ -101,10 +97,6 @@ void executePiped(char** buf, int nr) { // Can support up to 10 piped commands
         // Replace "sa" with "ls" in piped commands
         if (strcmp(argv[0], "sa") == 0) {
             argv[0] = "ls";
-        }
-        // Replace "noise" with "echo" in piped commands
-        if (strcmp(argv[0], "noise") == 0) {
-            argv[0] = "echo";
         }
 
         if (i != nr - 1) {
@@ -197,10 +189,10 @@ shows the internal help
 */
 void showHelp() {
     printf(ANSI_COLOR_GREEN "----------Help--------" ANSI_COLOR_RESET "\n");
-    printf(ANSI_COLOR_GREEN "Supported commands: sa (ls), noise (echo), cd, pwd, exit" ANSI_COLOR_RESET "\n");
-    printf(ANSI_COLOR_GREEN "Piping: Ex. sa | noise \"Hello\"" ANSI_COLOR_RESET "\n");
-    printf(ANSI_COLOR_GREEN "Asynchronous: Ex. sa & noise \"Done!\"" ANSI_COLOR_RESET "\n");
-    printf(ANSI_COLOR_GREEN "Input/output redirection: Ex. sa > file, sa >> file, noise < file" ANSI_COLOR_RESET "\n");
+    printf(ANSI_COLOR_GREEN "Supported commands: sa (ls), echo, cd, pwd, exit" ANSI_COLOR_RESET "\n");
+    printf(ANSI_COLOR_GREEN "Piping: Ex. sa | echo \"This works\"" ANSI_COLOR_RESET "\n");
+    printf(ANSI_COLOR_GREEN "Asynchronous: Ex. sa & echo \"Done!\"" ANSI_COLOR_RESET "\n");
+    printf(ANSI_COLOR_GREEN "Input/output redirection: Ex. sa > file, sa >> file, echo < file" ANSI_COLOR_RESET "\n");
 }
 
 int main() {
